@@ -1,5 +1,4 @@
 package com.pro24_group2.service.impl;
-
 import com.pro24_group2.dto.request.UserRequest;
 import com.pro24_group2.dto.response.UserResponse;
 import com.pro24_group2.entity.User;
