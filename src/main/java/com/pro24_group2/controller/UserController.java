@@ -3,8 +3,15 @@ import com.pro24_group2.dto.request.UserRequest;
 import com.pro24_group2.dto.response.UserResponse;
 import com.pro24_group2.entity.User;
 import com.pro24_group2.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/users")
@@ -24,6 +31,19 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 
+	@GetMapping()
+	public ResponseEntity<?> getAll(){
+		List<UserResponse> all = userService.getAll();
+		return ResponseEntity.ok(all);
+	}
+
+	@GetMapping("pagination")
+	public ResponseEntity<Page<UserResponse>> getAll(
+			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC)
+			Pageable pageable
+	){
+		return ResponseEntity.ok(userService.getAll(pageable));
+	}
 	// HTTP Method POST, PUT, PATCH, DELETE
 
 	// POST
