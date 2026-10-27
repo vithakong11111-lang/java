@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
 		userRepository.delete(user);
 	}
 
-	@Override
-	public Page<UserResponse> getAll(java.awt.print.Pageable pageable) {
-		return null;
-	}
+//	@Override
+//	public Page<UserResponse> getAll(java.awt.print.Pageable pageable) {
+//		return null;
+//	}
 
 	@Override
 	public List<UserResponse> getAll() {

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,18 +26,22 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	@PreAuthorize("hasAuthority('USER_READ')")
 	@GetMapping("{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id){
 		UserResponse user = userService.getById(id);
 		return ResponseEntity.ok(user);
 	}
 
+	@PreAuthorize("hasAuthority('USER_READ')")
 	@GetMapping()
 	public ResponseEntity<?> getAll(){
 		List<UserResponse> all = userService.getAll();
 		return ResponseEntity.ok(all);
 	}
 
+
+	@PreAuthorize("hasAuthority('USER_READ')")
 	@GetMapping("pagination")
 	public ResponseEntity<Page<UserResponse>> getAll(
 			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC)
@@ -47,6 +52,7 @@ public class UserController {
 	// HTTP Method POST, PUT, PATCH, DELETE
 
 	// POST
+	@PreAuthorize("hasAuthority('USER_WRITE')")
 	@PostMapping
 	public ResponseEntity<?> userPOST(@RequestBody UserRequest user) {
 
@@ -55,6 +61,7 @@ public class UserController {
 	}
 
 	//PUT
+	@PreAuthorize("hasAuthority('USER_WRITE')")
 	@PutMapping("{id}")
 	public ResponseEntity<?> userPUT(@PathVariable Long id, @RequestBody User user) {
 		User user1 = userService.updateById(id, user);
@@ -67,6 +74,8 @@ public class UserController {
 		System.out.println("User update specific data");
 	}
 
+
+	@PreAuthorize("hasAuthority('USER_DELETE')")
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> userDELETE(@PathVariable Long id) {
 		userService.deleteById(id);

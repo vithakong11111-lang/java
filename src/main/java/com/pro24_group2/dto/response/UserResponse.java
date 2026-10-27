@@ -1,5 +1,7 @@
 package com.pro24_group2.dto.response;
 
+import java.util.List;
+
 public class UserResponse {
 	private long id;
 	private String username;
@@ -37,5 +39,15 @@ public class UserResponse {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	private List<String> roles;
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

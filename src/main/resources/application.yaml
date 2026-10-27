@@ -3,11 +3,9 @@ spring:
     name: pro24_group2
   datasource:
     url: jdbc:postgresql://localhost:5432/pro24_group2
-    username: pro24_group2
-    password: pro24_group2
+    username: postgres
+    password: postgres
   jpa:
-    hibernate:
-      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
@@ -15,3 +13,7 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
+
+app:
+  jwt:
+    secret: "YourSuperSecretKeyForJwtSigningMustBeAtLeast256BitsLongHereForHS256"

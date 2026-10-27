@@ -2,6 +2,7 @@ package com.pro24_group2.mapper;
 
 import com.pro24_group2.dto.request.UserRequest;
 import com.pro24_group2.dto.response.UserResponse;
+import com.pro24_group2.entity.Role;
 import com.pro24_group2.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +35,7 @@ public class UserMapper {
 		response.setUsername(user.getUsername());
 		response.setNickName(user.getNickName());
 		response.setEnabled(user.getEnabled());
+		response.setRoles(user.getRoles().stream().map(Role::getName).sorted().toList());
 
 		return response;
 	}

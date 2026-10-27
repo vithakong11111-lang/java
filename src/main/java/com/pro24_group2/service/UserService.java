@@ -5,7 +5,7 @@ import com.pro24_group2.dto.response.UserResponse;
 import com.pro24_group2.entity.User;
 import org.springframework.data.domain.Page;
 
-import java.awt.print.Pageable;
+//import java.awt.print.Pageable;
 import java.util.List;
 
 public interface UserService {
@@ -20,5 +20,5 @@ public interface UserService {
 	void deleteById(Long id);
 
 	// GET  Data by list
-	Page<UserResponse> getAll(Pageable pageable);
+//	Page<UserResponse> getAll(Pageable pageable);
 }
